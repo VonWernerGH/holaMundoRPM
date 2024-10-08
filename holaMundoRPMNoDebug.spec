@@ -29,5 +29,5 @@ install -m 755 %{name} %{buildroot}%{_bindir}
 %{_bindir}/%{name}
 
 %changelog
-* Mon Oct 07 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - %{Version}-1
+* Tue Oct 08 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - %{Version}-1
 - Release de holaMundoRPM
