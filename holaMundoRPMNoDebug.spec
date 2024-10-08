@@ -4,7 +4,7 @@ Release:          1%{?dist}
 Summary:        Programa holaMundoRPM, imprime "Hola Mundo RPM"
 
 License:           GPLv3
-URL:                 https://github.com/VonWernerGH/
+URL:                  https://github.com/VonWernerGH/
 Source0:          %{name}-%{version}.tar.gz
 BuildRequires: 	gcc 
 Requires:         glibc
@@ -30,4 +30,4 @@ install -m 755 %{name} %{buildroot}%{_bindir}
 
 %changelog
 * Mon Oct 07 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - %{Version}-1
-- Release de holaMundo
+- Release de holaMundoRPM
