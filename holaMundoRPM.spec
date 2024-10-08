@@ -1,25 +1,17 @@
-Name:              holaMundoRPM
-Version:           1.0.0 
-Release:          1%{?dist}
-Summary:        Programa holaMundoRPM, imprime "Hola Mundo RPM"
-
-License:           GPLv3
-URL:                 https://github.com/VonWernerGH/
-Source0:          %{name}-%{version}.tar.gz
-BuildRequires: 	gcc 
-Requires:         glibc
+Name:          holaMundo
+Version:       	1.0.0 
+Release:       1%{?dist}
+Summary:    Programa holaMundo, imprime "Hola Mundo"
+License:       GPLv3
+URL:           	https://github.com/VonWernerGH/
+Source0:      %{name}-%{version}.tar.gz
 
 
 %description
-Programa que imprime "Hola Mundo RPM"
-
-%global debug_package %{nil}
+Programa que imprime "Hola Mundo"
 
 %prep
 %setup -q
-
-%build
-gcc -Wall -Werror -Wl,--as-needed -O3 -g0 -s -march=native -flto -o %{name} %name.c
 
 %install
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
