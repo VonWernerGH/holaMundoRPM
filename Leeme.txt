@@ -1,0 +1,38 @@
+holaMundoRPM es un ejemplo de como empaquetar un programa como holaMundoRPM.c en RPM.
+
+El archivo spec se llama holaMundoRPM.spec, este guión de construcción de RPM incluye la directiva:
+
+%global debug_package %{nil}
+
+La cual le dice al sistema de construcción RPM que no cree el subpaquete debuginfo, por lo que el ejecutable no deberá incluir información de depuración, es útil cuando el release esta optimizado al máximo para eficiencia en velocidad y tamaño, lo cual no incluye información de depuración, el archivo holaMundoRPM.spec esta optimizado al máximo con la siguiente orden de compilación:
+
+gcc -Wall -Werror -Wl,--as-needed -O3 -g0 -s -march=native -flto -o %{name} %name.c
+
+Detalles a considerar:
+
+- El archivo .spec se deberá colocar en ~/rpmbuild/SPECS
+- Se requiere un archivo .tar.gz que contendrá el código fuente del programa, este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
+
+    $ tar -czvf ~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz holaMundoRPM-1.0.0/
+
+    - Donde holaMundo-1.0.0/ es el directorio que contiene los archivos del proyecto.
+    - El nombre del archivo .tar.gz debe incluir también el nombre y la versión, en este caso holaMundoRPM-1.0.0.tar.gz.
+    - Como se observa en la instrucción, al decirle a tar que construya el comprimido, también se le instruye para que de una vez lo posicione en su directorio correspondiente ~/rpmbuild/SOURCES
+- Al finalizar de construir los archivos RPM con la siguiente instrucción:
+    rpmbuild -ba ~/rpmbuild/SPECS/holaMundoRPM.spec
+    
+    Serán los 2 archivos RPM construidos, uno con los binarios y uno con los archivos para la construcción del RPM, en caso de holaMundoRPM son:
+    /home/victor/rpmbuild/SRPMS/holaMundoRPM-1.0.0-1.mga9.src.rpm
+    /home/victor/rpmbuild/RPMS/x86_64/holaMundoRPM-1.0.0-1.mga9.x86_64.rpm
+    
+    ***** Aquí explicar como se crea un RPM con información de debug con la maxima compatibilidad (es la recomendación para los RPM's). *****
+    
+    
+    gcc -O2 -g -fno-omit-frame-pointer -mtune=generic -fstack-protector-strong -D_FORTIFY_SOURCE=2 -pie -fPIE -o  holaMundoRPM holaMundoRPM.c
+
+    
+    
+Víctor Emmanuel Rivero Alonzo
+
+    
+    
