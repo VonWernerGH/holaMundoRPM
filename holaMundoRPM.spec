@@ -1,13 +1,13 @@
-Name:              holaMundoRPM
-Version:       	    1.0.0 
-Release:           1%{?dist}
-Summary:        Programa holaMundoRPM, imprime "Hola Mundo RPM"
+Name:             holaMundoRPM
+Version:           1.0.0 
+Release:          1%{?dist}
+Summary:       Programa holaMundoRPM, imprime "Hola Mundo RPM"
 
 License:           GPLv3
-URL:           	    https://github.com/VonWernerGH/
+URL:                 https://github.com/VonWernerGH/
 Source0:          %{name}-%{version}.tar.gz
-BuildRequires: 	gcc 
-Requires:         glibc
+BuildRequires:  gcc 
+Requires:          glibc
 
 
 %description
@@ -27,5 +27,5 @@ install -m 755 %{name} %{buildroot}%{_bindir}
 %{_bindir}/%{name}
 
 %changelog
-* Tue Oct 08 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - %{Version}-1
+* Tue Oct 08 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
 - Release de holaMundoRPM
