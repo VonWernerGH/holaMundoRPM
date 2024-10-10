@@ -53,4 +53,9 @@ dkms.conf
 
 # Temporales del editor Kate
 *.kate-swp
+
+# Ejecutable del programa
 holaMundoRPM
+
+# Temoprales de LibreOffice Writer
+.~lock.*

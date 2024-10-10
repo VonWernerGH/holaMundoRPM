@@ -1,3 +1,5 @@
+holaMundoRPM
+
 El proyecto "holaMundoRPM" es un proyecto ejemplo de como empaquetar un programa como holaMundoRPM.c en RPM.
 
 Creación del RPM:
@@ -35,7 +37,7 @@ Para crear un RPM se requieren los siguientes pasos:
     Este comando realiza todo el proceso de creación del RPM.
 
     
-Conformación del guión del archivo holaMundoRPM.spec:
+Conformación del guion del archivo holaMundoRPM.spec:
 
 Este archivo hay que ubicarlo en ~/rpmbuild/SPECS.
 
@@ -69,9 +71,9 @@ Programa...        comienzan con espacios en blanco se consideran "preformateada
 %prep              : Esta directiva marca el inicio de la sección "prepare" en el proceso de construcción del RPM. Aquí se colocan los comandos
 %setup -q          necesarios para preparar el entorno de compilación, como la extracción del código fuente.
                           %setup -q, Este comando dentro de la sección %prep descomprime y extrae el archivo de origen (Source0). La opción -q suprime la mayoría de los mensajes de salida para hacer el proceso menos verboso. Básicamente, este comando extrae el archivo fuente holaMundoRPM.tar.gz en un directorio de trabajo temporal para que el sistema de compilación pueda acceder a los archivos.
-%build
-gcc ...  -o %{name} %{name}.c : Esta sección indica el inicio del proceso de construcción del paquete. Todo lo que está dentro de esta sección se
-                                                      utiliza para compilar el código fuente y generar el ejecutable.
+%build                                         : Esta sección indica el inicio del proceso de construcción del paquete. Todo lo que está dentro de esta sección se
+gcc ...  -o %{name} %{name}.c   utiliza para compilar el código fuente y generar el ejecutable.
+
 %install                                                                    : En %install, el diseño de instalación del software se prepara creando la estructura de directorio
 mkdir -p $RPM_BUILD_ROOT%{_bindir}                    necesaria en un directorio "raíz de compilación" inicialmente vacío y copiando el software
 install -m 755 %{name} %{buildroot}%{_bindir}    recién creado allí en los lugares apropiados. Básicamente se crea una estructura de como
@@ -80,18 +82,20 @@ install -m 755 %{name} %{buildroot}%{_bindir}    recién creado allí en los lug
 %{_bindir}/%{name}       paquete se instale. Aquí incluyen otros documentos (%doc docs/Readme.md), licencias (%licence docs/GPLv3.txt),
 %license docs/GPLv3.txt   paginas man (%{_mandir}/man1/disableSS.1*), etc.
 
-%changelog                              : La sección %changelog es el registro de cambios, lleva un formato fijo (en ingles), revisar el archivo * Wed ... - * Wed ... - 1.0.0-1                          holaMundoRPM.spec. Esta información es estatica, no se deben usar macros, rpmlint marca advertencia si se usan - Release de holaMundoRPM      macros, aunque de todas formas generá elos RPMs, la última línea es información generica del release.
+%changelog                              : La sección %changelog es el registro de cambios, lleva un formato fijo (en ingles), revisar el archivo 
+Wed ... - 1.0.0-1                          holaMundoRPM.spec. Esta información es estatica, no se deben usar macros, rpmlint marca advertencia si se usan - Release de holaMundoRPM      macros, aunque de todas formas generá elos RPMs, la última línea es información generica del release.
 
-Cuando todo esta listo, se utiliza la siguiente instrucción para construir el/los RPMs:
+Construir el/los RPMs:
+Ejecutar la siguiente orden:
         rpmbuild -ba ~/rpmbuild/SPECS/holaMundoRPM.spec
     
 Al finalizar, si no hubo errores, encontraremos los siguientes RPMS:
-~/rpmbuild/SRPMS/holaMundoRPM-1.0.0-1.mga9.src.rpm
-~/rpmbuild/RPMS/x86_64/holaMundoRPM-1.0.0-1.mga9.x86_64.rpm                                          
+    ~/rpmbuild/SRPMS/holaMundoRPM-1.0.0-1.mga9.src.rpm
+    ~/rpmbuild/RPMS/x86_64/holaMundoRPM-1.0.0-1.mga9.x86_64.rpm                                          
 
 
 holaMundoRPM.spec:
-El archivo holaMundoRPM.spec es un guión de construcción con una optimización ligera/media con información de depuración. Esta es la recomendación de compilación para la distribución RPM.
+El archivo holaMundoRPM.spec es un guion de construcción con una optimización ligera/media con información de depuración. Esta es la recomendación de compilación para la distribución RPM.
 
 La instrucción de compilación es la siguiente:
 
@@ -135,6 +139,15 @@ El archivo spec holaMundoRPMNoDebug.spec, este guión de construcción de RPM in
 
 La cual le dice al sistema de construcción RPM que no cree el subpaquete debuginfo, por lo que el ejecutable no deberá incluir información de depuración, es útil cuando el release esta optimizado al máximo para eficiencia en velocidad y tamaño, lo cual no incluye información de depuración, el archivo holaMundoRPMNoDebug.spec esta optimizado al máximo.
 
-   
+Requisitos:
+    • gcc
+
+Licencia
+Este proyecto está licenciado bajo la GPLv3 (GNU General Public License, versión 3). Esto significa que:
+    1. Puedes utilizar, modificar y distribuir este software siempre que lo hagas bajo los mismos términos de la GPLv3. 
+    2. Cualquier modificación que hagas al código fuente y distribuyas también debe ser publicada bajo la GPLv3. 
+    3. El código fuente completo debe estar disponible para cualquier usuario que reciba una copia del programa. 
+Puedes encontrar una copia completa en el archivo GPLv3.txt de este repositorio o en https://www.gnu.org/licenses/gpl-3.0.html.
+
 Víctor Emmanuel Rivero Alonzo
 2024/10/09
