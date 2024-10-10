@@ -216,7 +216,5 @@ Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pu
 
 Para consultas o soporte, puedes contactar al autor del proyecto a través de nospamvr-git@yahoo.com .
 
-<p align="right">
-Víctor Emmanuel Rivero Alonzo
-2024/10/09
-</p>
+<p align="right">Víctor Emmanuel Rivero Alonzo</p>
+<p align="right">2024/10/09</p>
