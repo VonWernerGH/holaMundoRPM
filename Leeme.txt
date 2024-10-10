@@ -78,7 +78,7 @@ install -m 755 %{name} %{buildroot}%{_bindir}    recién creado allí en los lug
                                                                                   quedará instalada la aplicación siendo $RPM_BUILD_ROOT (~/rpmbuild/BUILDROOT) la raíz del sistema. El comando install es similar a cp, pero con funcionalidades adicionales. En este caso, lo que hace es copiar un archivo con permisos específicos. Si no lo conoces, te recomiendo te familiarices con el: man install.
 %files                              : %files especifica qué archivos se van a incluir en el paquete RPM y dónde deben instalarse en el sistema cuando el
 %{_bindir}/%{name}       paquete se instale. Aquí incluyen otros documentos (%doc docs/Readme.md), licencias (%licence docs/GPLv3.txt),
-%license docs/GPLv3.txt   páginas man (%{_mandir}/man1/disableSS.1*), etc.
+%license docs/GPLv3.txt   paginas man (%{_mandir}/man1/disableSS.1*), etc.
 
 %changelog                              : La sección %changelog es el registro de cambios, lleva un formato fijo (en ingles), revisar el archivo * Wed ... - * Wed ... - 1.0.0-1                          holaMundoRPM.spec. Esta información es estatica, no se deben usar macros, rpmlint marca advertencia si se usan - Release de holaMundoRPM      macros, aunque de todas formas generá elos RPMs, la última línea es información generica del release.
 
