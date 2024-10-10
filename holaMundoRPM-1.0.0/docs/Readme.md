@@ -57,14 +57,13 @@ Para crear un RPM se requieren los siguientes pasos:
 Este archivo hay que ubicarlo en **\~/rpmbuild/SPECS**.
 
 ### **Name: holaMundoRPM**
-El nombre contiene el nombre del paquete no
-debé contener versión.
+Name contiene el nombre del paquete, no debé contener versión.
 
 ### **Version: 1.0.0**
-La versión contiene la versión de la aplicación.
+Version contiene la versión de la aplicación.
 
 ### **Release: 1%{?dist}** 
-Release se refiere a la versión de \"release\" del paquete y el marcador **%{?dist}** agrega automáticamente un sufijo de distribución dependiendo de la plataforma en la que se esté construyendo el paquete.
+**Release** se refiere a la versión de liberación del paquete y el marcador **%{?dist}** agrega automáticamente un sufijo de distribución dependiendo de la plataforma en la que se esté construyendo el paquete.
 
 - **1:** Es el número de release de este paquete. Se incrementa cada vez que haces cambios en el paquete pero no en la versión del software. Por ejemplo, si lanzas varias versiones del paquete **holaMundoRPM** 0.1, podrías incrementar este número a 2, 3, etc., cuando actualices el empaquetado o ajustes menores.
 
@@ -81,7 +80,7 @@ Resumen breve (\< 70 caracteres) de la licencia del paquete. Por ejemplo: Licenc
 URL que proporciona más información sobre el paquete, normalmente un sitio web.
 
 ### **Source0: %{name}-%{version}.tar.gz**
-Archivo donde se encuentran las fuentes del proyecto se construye con la información **Name** y **Version** proporcionados anteriormente. Este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
+Archivo donde se encuentran las fuentes del proyecto se construye con la información de **Name** y **Version** proporcionados anteriormente. Este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
 
   ```bash
   $ tar -czvf ~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz holaMundoRPM-1.0.0/
@@ -98,11 +97,11 @@ Esta línea indica las dependencias necesarias para compilar el paquete. En este
 Esta línea indica las dependencias necesarias para ejecutar el paquete. En el caso de **holaMundoRPM** solo requiere **glibc**.
 
 ### **BuildArch: x86_64**
-No es necesaria para este proyecto, incluido por completitud. Especifica la arquitectura en la que se ejecutará el paquete binario resultante. Normalmente se trata de una arquitectura de CPU como sparc, i386. La cadena \'noarch\' está reservada para especificar que el paquete binario resultante es independiente de la plataforma. Los paquetes típicos independientes de la plataforma son los paquetes html, perl, python, java y ps.
+La sección **BuildArch** no es necesaria para este proyecto, incluido por completitud. Especifica la arquitectura en la que se ejecutará el paquete binario resultante. Normalmente se trata de una arquitectura de CPU como sparc, i386. La cadena \'noarch\' está reservada para especificar que el paquete binario resultante es independiente de la plataforma. Los paquetes típicos independientes de la plataforma son los paquetes html, perl, python, java y ps.
 
 ### **%description**
 ### Programa que imprime "Hola Mundo RPM"
-**%description** es texto en formato libre, pero hay dos cosas a tener en cuenta. El primero se refiere al reformateo. Las líneas que comienzan con espacios en blanco se consideran \"preformateadas\" y se dejarán como están. Las líneas adyacentes sin espacios en blanco iniciales se consideran un solo párrafo y pueden estar sujetas a formato mediante glint u otra herramienta RPM.
+La sección **%description** incluye texto en formato libre, pero hay dos cosas a tener en cuenta. El primero se refiere al reformateo. Las líneas que comienzan con espacios en blanco se consideran \"preformateadas\" y se dejarán como están. Las líneas adyacentes sin espacios en blanco iniciales se consideran un solo párrafo y pueden estar sujetas a formato mediante glint u otra herramienta RPM.
 
 ### **%prep**
 ### **%setup -q**
@@ -122,10 +121,11 @@ En la sección **%install**, el diseño de instalación del software  se prepara
 ### **%files** 
 ### **%{\_bindir}/%{name}**
 ### **%license docs/GPLv3.txt**
+### **%doc docs/Readme.md**
 La sección **%files** especifica qué archivos se van a incluir en el paquete RPM y dónde deben instalarse en el sistema cuando el paquete se instale. Aquí incluyen otros documentos (%doc docs/Readme.md), licencias (%licence docs/GPLv3.txt), paginas man (%{\_mandir}/man1/disableSS.1\*), etc.
 
 #### **%changelog** 
-### * Wed Oct 09 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
+### * Thu Oct 10 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
 ### - Release de holaMundoRPM
 La sección **%changelog** es el registro de cambios, lleva un formato fijo. Esta información es estática, no se deben usar macros, rpmlint marca advertencia si se usan macros, aunque de todas formas generá los RPMs, la última línea es información generica del release.
 
@@ -216,7 +216,7 @@ Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pu
 
 Para consultas o soporte, puedes contactar al autor del proyecto a través de nospamvr-git@yahoo.com .
 
-<div style="text-align: right;"><p>
+<p align="right">
 Víctor Emmanuel Rivero Alonzo
-2024/10/09</p>
-</div>
+2024/10/09
+</p>

@@ -26,7 +26,8 @@ install -m 755 %{name} %{buildroot}%{_bindir}
 %files
 %{_bindir}/%{name}
 %license docs/GPLv3.txt
+%doc docs/Readme.md
 
 %changelog
-* Wed Oct 09 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
+* Thu Oct 10 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
 - Release de holaMundoRPM
