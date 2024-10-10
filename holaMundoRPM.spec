@@ -25,6 +25,7 @@ install -m 755 %{name} %{buildroot}%{_bindir}
 
 %files
 %{_bindir}/%{name}
+%license docs/GPLv3.txt
 
 %changelog
 * Wed Oct 09 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
