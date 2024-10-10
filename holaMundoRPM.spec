@@ -8,7 +8,7 @@ URL:                 https://github.com/VonWernerGH/
 Source0:          %{name}-%{version}.tar.gz
 BuildRequires:  gcc 
 Requires:          glibc
-
+BuildArch:         x86_64
 
 %description
 Programa que imprime "Hola Mundo RPM"
@@ -27,5 +27,5 @@ install -m 755 %{name} %{buildroot}%{_bindir}
 %{_bindir}/%{name}
 
 %changelog
-* Tue Oct 08 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
+* Wed Oct 09 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
 - Release de holaMundoRPM
