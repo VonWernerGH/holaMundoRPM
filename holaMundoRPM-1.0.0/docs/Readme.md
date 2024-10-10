@@ -1,6 +1,6 @@
-h[]{#anchor}olaMundoRPM
+#holaMundoRPM
 
-El proyecto \"holaMundoRPM\" es un proyecto ejemplo de como empaquetar
+El proyecto **\"holaMundoRPM\"** es un proyecto ejemplo de como empaquetar
 un programa como holaMundoRPM.c en RPM.
 
 ## Creación del RPM:
@@ -9,56 +9,50 @@ Para crear un RPM se requieren los siguientes pasos:
 
 1.  Instalar la herramienta rpmdevtools.
 
-> \$ sudo urpmi rpmdevtools
+  ```bash
+  \$ sudo urpmi rpmdevtools
+  ```
 
-1.  Ejecutar el comando rpmdev-setuptree, este comando crea la
+2.  Ejecutar el comando rpmdev-setuptree, este comando crea la
     estructura para la construcción del archivo RPM.
+  ```bash
+  \$ rpmdev-setuptree
 
-> \$ rpmdev-setuptree
+  Al finalizar, se abra creado la siguiente estructura:
 
-> Al finalizar, se abra creado la siguiente estructura:
+  /home/user/rpmbuild/
+  ├── BUILD
+  ├── BUILDROOT
+  ├── RPMS
+  ├── SOURCES
+  ├── SPECS
+  └── SRPMS
 
-> /home/user/rpmbuild/
+  SOURCES: Aquí se pone el código fuente o archivos que quieras empaquetar, un archivo .tar.gz.
+  SPECS: Aquí se pone el archivo .spec.
+  BUILD: Lugar temporal para compilar.
+  RPMS: Aquí se guardarán los archivos RPM construidos.
+  SRPMS: Aquí se guardan los paquetes fuente RPM construidos.
+  ```
 
-> ├── BUILD
+3.  Ejecutar el comando rpmdev-newspec holaMundoRPM
 
-> ├── BUILDROOT
+  ```bash
+  \$ rpmdev-newspec \~/rpmbuild/SPECS/holaMundoRPM
+  ```
 
-> ├── RPMS
+  Este comando crea el archivo holaMundoRPM.spec en el directorio \~/rpmbuild/SPECS/, el cual modificaremos según nuestras necesidades.
 
-> ├── SOURCES
+4.  Modificar el archivo \~/rpmbuild/SPECS/holaMundoRPM.spec con los datos de nuestra aplicación.
+5.  Ejecutar el comando:
 
-> ├── SPECS
+  ```bash
+  \$ rpmbuild -ba \~/rpmbuild/SPECS/holaMundoRPM.spec
+  ```
 
-> └── SRPMS
+  Este comando realiza todo el proceso de creación del RPM.
 
-> SOURCES: Aquí se pone el código fuente o archivos que quieras
-> empaquetar, un archivo .tar.gz.
-
-> SPECS: Aquí se pone el archivo .spec.
-
-> BUILD: Lugar temporal para compilar.
-
-> RPMS: Aquí se guardarán los archivos RPM construidos.
-
-> SRPMS: Aquí se guardan los paquetes fuente RPM construidos.
-
-1.  Ejecutar el comando rpmdev-newspec holaMundoRPM
-
-> \$ rpmdev-newspec \~/rpmbuild/SPECS/holaMundoRPM
-
-> Este comando crea el archivo holaMundoRPM.spec en el directorio
-> \~/rpmbuild/SPECS/, el cual modificaremos según nuestras necesidades.
-
-1.  Modificar el archivo \~/rpmbuild/SPECS/holaMundoRPM.spec con los
-    datos de nuestra aplicación.
-2.  Ejecutar el comando:
-
-> \$ rpmbuild -ba \~/rpmbuild/SPECS/holaMundoRPM.spec
-
-> Este comando realiza todo el proceso de creación del RPM.
-
-## Conformación del guion del archivo holaMundoRPM.spec: {#conformación-del-guion-del-archivo-holamundorpm.spec}
+## Conformación del guion del archivo holaMundoRPM.spec:
 
 Este archivo hay que ubicarlo en \~/rpmbuild/SPECS.
 
@@ -72,13 +66,13 @@ del paquete y el marcador %{?dist} agrega automáticamente un sufijo de
 distribución dependiendo de la plataforma en la que se esté construyendo
 el paquete.
 
-**1:** Es el número de release de este paquete. Se incrementa cada vez
+  **1:** Es el número de release de este paquete. Se incrementa cada vez
 que haces cambios en el paquete pero no en la versión del software. Por
 ejemplo, si lanzas varias versiones del paquete disableSS 0.1, podrías
 incrementar este número a 2, 3, etc., cuando actualices el empaquetado o
 ajustes menores.
 
-**%{?dist}:** Es un macro de RPM que inserta automáticamente una
+  **%{?dist}:** Es un macro de RPM que inserta automáticamente una
 etiqueta de distribución (por ejemplo, .fc38 en Fedora 38 o .el8 en
 CentOS 8). Esto permite identificar rápidamente el sistema operativo o
 distribución para el que fue construido el paquete. Si el macro %{?dist}
