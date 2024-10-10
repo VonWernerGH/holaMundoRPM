@@ -56,126 +56,78 @@ Para crear un RPM se requieren los siguientes pasos:
 
 Este archivo hay que ubicarlo en \~/rpmbuild/SPECS.
 
-### **Name: holaMundoRPM :**
+### **Name: holaMundoRPM**
 El nombre contiene el nombre del paquete no
 debé contener versión.
 
-### **Version: 1.0.0 :**
+### **Version: 1.0.0**
 La versión contiene la versión de la aplicación.
 
-### **Release: 1%{?dist} :** 
+### **Release: 1%{?dist}** 
 Release se refiere a la versión de \"release\" del paquete y el marcador %{?dist} agrega automáticamente un sufijo de distribución dependiendo de la plataforma en la que se esté construyendo el paquete.
 
 - **1:** Es el número de release de este paquete. Se incrementa cada vez que haces cambios en el paquete pero no en la versión del software. Por ejemplo, si lanzas varias versiones del paquete disableSS 0.1, podrías incrementar este número a 2, 3, etc., cuando actualices el empaquetado o ajustes menores.
 
 - **%{?dist}:** Es un macro de RPM que inserta automáticamente una etiqueta de distribución (por ejemplo, .fc38 en Fedora 38 o .el8 en
-CentOS 8). Esto permite identificar rápidamente el sistema operativo o distribución para el que fue construido el paquete. Si el macro **%{?dist}**
-no está definido, simplemente no se añade nada.
+CentOS 8). Esto permite identificar rápidamente el sistema operativo o distribución para el que fue construido el paquete. Si el macro **%{?dist}** no está definido, simplemente no se añade nada.
 
-### **Summary: \... :** 
+### **Summary: Programa holaMundoRPM, imprime "Hola Mundo RPM"** 
 Resumen breve (\< 70 caracteres) del paquete.
 
-### **License: GPLv3 :** 
+### **License: GPLv3** 
 Resumen breve (\< 70 caracteres) de la licencia del paquete. Por ejemplo: Licencia: GPLv3
 
-**URL: https://\...:** URL que proporciona más información sobre el
-paquete, normalmente un sitio web.
+### **URL: https://github.com/VonWernerGH/**
+URL que proporciona más información sobre el paquete, normalmente un sitio web.
 
-**Source0: %{name}-%{version}.tar.gz:** Archivo donde se encuentran las
-fuentes del proyecto se construye con la información {Nombre} y
-{Version} proporcionados anteriormente. este archivo deberá ser
-construido con los archivos del proyecto dentro de un directorio con el
-nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la
-versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir
-como sigue:
+### **Source0: %{name}-%{version}.tar.gz**
+Archivo donde se encuentran las fuentes del proyecto se construye con la información %{name} y %{version} proporcionados anteriormente. este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
 
-\$ tar -czvf \~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz
-holaMundoRPM-1.0.0/
+  ```bash
+  $ tar -czvf \~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz holaMundoRPM-1.0.0/
 
- - Donde holaMundo-1.0.0/ es el directorio que contiene los archivos del
-proyecto.
+  - Donde holaMundo-1.0.0/ es el directorio que contiene los archivos del proyecto.
+  - El nombre del archivo .tar.gz debe incluir también el nombre y la versión, en este caso holaMundoRPM-1.0.0.tar.gz.
+  - Como se observa en la instrucción, al decirle a tar que construya el comprimido, también se le instruye para que de una vez lo posicione en su directorio correspondiente ~/rpmbuild/SOURCES
+  ```
 
- - El nombre del archivo .tar.gz debe incluir también el nombre y la
-versión, en este caso holaMundoRPM-1.0.0.tar.gz.
+### **BuildRequires: gcc**
+Esta línea indica las dependencias necesarias para compilar el paquete. En este caso solo necesita de **gcc**.
 
- - Como se observa en la instrucción, al decirle a tar que construya el
-comprimido, también se le instruye para que de una vez lo posicione en
-su directorio correspondiente \~/rpmbuild/SOURCES
+### **Requires: glibc** 
+Esta línea indica las dependencias necesarias para ejecutar el paquete. En el caso de holaMundoRPM solo requiere gibc.
 
-**BuildRequires: gcc:** Esta línea indica las dependencias necesarias
-para compilar el paquete. En este caso solo necesita de gcc.
+### **BuildArch: x86_64**
+No es necesaria para este proyecto, incluido por completitud. Especifica la arquitectura en la que se ejecutará el paquete binario resultante. Normalmente se trata de una arquitectura de CPU como sparc, i386. La cadena \'noarch\' está reservada para especificar que el paquete binario resultante es independiente de la plataforma. Los paquetes típicos independientes de la plataforma son los paquetes html, perl, python, java y ps.
 
-**Requires: glibc:** Esta línea indica las dependencias necesarias para
-ejecutar el paquete. En el caso de holaMundoRPM solo requiere gibc.
+### **%description**
+### Programa que imprime "Hola Mundo RPM"
+**%description** es texto en formato libre, pero hay dos cosas a tener en cuenta. El primero se refiere al reformateo. Las líneas que comienzan con espacios en blanco se consideran \"preformateadas\" y se dejarán como están. Las líneas adyacentes sin espacios en blanco iniciales se consideran un solo párrafo y pueden estar sujetas a formato mediante glint u otra herramienta RPM.
 
-**BuildArch: x86_64:** No es necesaria para este proyecto, incluido por
-completitud. Especifica la arquitectura en la que se ejecutará el
-paquete binario resultante. Normalmente se trata de una arquitectura de
-CPU como sparc, i386. La cadena \'noarch\' está reservada para
-especificar que el paquete binario resultante es independiente de la
-plataforma. Los paquetes típicos independientes de la plataforma son los
-paquetes html, perl, python, java y ps.
+### **%prep**
+### **%setup -q **
+Esta directiva marca el inicio de la sección \"prepare\" en el proceso de construcción del RPM. Aquí se colocan los comandos necesarios para preparar el entorno de compilación, como la extracción del código fuente.
 
-**%description: ** %description es texto en formato libre, pero hay dos
-cosas a tener en cuenta. El **Programa... **primero se refiere al
-reformateo. Las líneas que comienzan con espacios en blanco se
-consideran \"preformateadas\" y se dejarán como están. Las líneas
-adyacentes sin espacios en blanco iniciales se consideran un solo
-párrafo y pueden estar sujetas a formato mediante glint u otra
-herramienta RPM.
+- **%setup -q**, Este comando dentro de la sección **%prep** descomprime y extrae el archivo de origen (Source0). La opción -q suprime la mayoría de los mensajes de salida para hacer el proceso menos verboso. Básicamente, este comando extrae el archivo fuente holaMundoRPM.tar.gz en un directorio de trabajo temporal para que el sistema de compilación pueda acceder a los archivos.
 
-**%prep:** Esta directiva marca el inicio de la sección \"prepare\" en
-el proceso de construcción **%setup -q **del RPM. Aquí se colocan los
-comandos necesarios para preparar el entorno de compilación, como la
-extracción del código fuente.
+### **%build** 
+### gcc -O2 -g -fno-omit-frame-pointer -mtune=generic -fstack-protector-strong -D_FORTIFY_SOURCE=2 -pie -fPIE -Wall -Werror -Wl,--as-needed -o %{name} %{name}.c
+Esta sección indica el inicio del proceso de construcción del paquete. Todo lo que está dentro de esta sección se utiliza para compilar el código fuente y generar el ejecutable.
 
-**%setup -q**, Este comando dentro de la sección %prep descomprime y
-extrae el archivo de origen (Source0). La opción -q suprime la mayoría
-de los mensajes de salida para hacer el proceso menos verboso.
-Básicamente, este comando extrae el archivo fuente holaMundoRPM.tar.gz
-en un directorio de trabajo temporal para que el sistema de compilación
-pueda acceder a los archivos.
+### **%install**
+### **mkdir -p \$RPM_BUILD_ROOT%{\_bindir}**
+### **install -m 755 %{name} %{buildroot}%{\_bindir} **
+En la sección **%install**, el diseño de instalación del software  se prepara creando la estructura de directorio necesaria en un directorio \"raíz de compilación\" inicialmente vacío y copiando el software recién creado allí en los lugares apropiados. Básicamente se crea una estructura de como quedará instalada la aplicación siendo \$RPM_BUILD_ROOT (\~/rpmbuild/BUILDROOT) la raíz del sistema. El comando **install** es similar a cp, pero con funcionalidades adicionales. En este caso, lo que hace es copiar un archivo con permisos específicos. Si no lo conoces, te recomiendo te familiarices con el: man install.
 
-**%build:** Esta sección indica el inicio del proceso de construcción
-del paquete.
+### **%files** 
+### **%{\_bindir}/%{name}**
+### **%license docs/GPLv3.txt**
+La sección **%files ** especifica qué archivos se van a incluir en el paquete RPM y dónde deben instalarse en el sistema cuando el paquete se instale. Aquí incluyen otros documentos (%doc docs/Readme.md), licencias (%licence docs/GPLv3.txt), paginas man (%{\_mandir}/man1/disableSS.1\*), etc.
 
-**gcc \... -o %{name} %{name}.c** Todo lo que está dentro de esta
-sección se utiliza para compilar el código fuente y generar el
-ejecutable.
-
-**%install: **En %install, el diseño de instalación del software
-
-**mkdir -p \$RPM_BUILD_ROOT%{\_bindir} **se prepara creando la
-estructura de directorio
-
-**install -m 755 %{name} %{buildroot}%{\_bindir} **necesaria en un
-directorio \"raíz de compilación\" inicialmente vacío y copiando el
-software recién creado allí en los lugares apropiados. Básicamente se
-crea una estructura de como quedará instalada la aplicación siendo
-\$RPM_BUILD_ROOT (\~/rpmbuild/BUILDROOT) la raíz del sistema. El comando
-install es similar a cp, pero con funcionalidades adicionales. En este
-caso, lo que hace es copiar un archivo con permisos específicos. Si no
-lo conoces, te recomiendo te familiarices con el: man install.
-
-**%files: %files** especifica qué archivos se van a incluir en el
-paquete RPM y
-
-**%{\_bindir}/%{name} **dónde deben instalarse en el sistema cuando el
-paquete se instale. Aquí
-
-**%license docs/GPLv3.txt **incluyen otros documentos (%doc
-docs/Readme.md), licencias (%licence docs/GPLv3.txt), paginas man
-(%{\_mandir}/man1/disableSS.1\*), etc.
-
-**%changelog:** La sección **%changelog** es el registro de cambios,
-lleva un formato fijo
-
-**Wed \... -- 1.0.0-1 **(en ingles), revisar el archivo
-holaMundoRPM.spec. Esta información
-
-**Release de holaMundoRPM **es estatica, no se deben usar macros,
-rpmlint marca advertencia si se usan macros, aunque de todas formas
-generá elos RPMs, la última línea es información generica del release.
+#### **%changelog** 
+### * Wed Oct 09 2024 Víctor Emmanuel Rivero Alonzo <nospamvr-git@yahoo.com> - 1.0.0-1
+### - Release de holaMundoRPM
+La sección **%changelog** es el registro de cambios, lleva un formato fijo. Esta información es estatica, no se deben usar macros, rpmlint marca advertencia si se usan macros, aunque de todas formas generá los RPMs, la última línea es información generica del release.
 
 ## Construir el/los RPMs:
 
@@ -283,19 +235,22 @@ máximo.
 
 ## Licencia
 
-[]{#anchor-2}Este proyecto está licenciado bajo la **GPLv3** (GNU
-General Public License, versión 3). Esto significa que:
+Este proyecto está licenciado bajo la **GPLv3** (GNU General Public License, versión 3). Esto significa que:
 
-1.  Puedes utilizar, modificar y distribuir este software siempre que lo
-    hagas bajo los mismos términos de la **GPLv3**.
-2.  Cualquier modificación que hagas al código fuente y distribuyas
-    también debe ser publicada bajo la **GPLv3**.
-3.  El código fuente completo debe estar disponible para cualquier
-    usuario que reciba una copia del programa.
+1. Puedes utilizar, modificar y distribuir este software siempre que lo hagas bajo los mismos términos de la **GPLv3**.
+2. Cualquier modificación que hagas al código fuente y distribuyas también debe ser publicada bajo la **GPLv3**.
+3. El código fuente completo debe estar disponible para cualquier usuario que reciba una copia del programa.
 
-Puedes encontrar una copia completa en el archivo *GPLv3.txt* de este
-repositorio o en <https://www.gnu.org/licenses/gpl-3.0.html>.
+Puedes encontrar una copia completa en el archivo `LICENSE` de este repositorio o en [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
 
-Víctor Emmanuel Rivero Alonzo
+## Contribuciones
+
+Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pull request" con las mejoras o correcciones.
+
+## Contacto
+
+Para consultas o soporte, puedes contactar al autor del proyecto a través de nospamvr-git@yahoo.com .
+
+<div style="text-align: right;">Víctor Emmanuel Rivero Alonzo</div>
 
 2024/10/09

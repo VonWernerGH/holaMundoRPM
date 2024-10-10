@@ -52,8 +52,8 @@ Release: 1%{?dist} : Release se refiere a la versión de "release" del paquete y
 Summary: ... : Resumen breve (< 70 caracteres) del paquete.
 License: GPLv3 : Resumen breve (< 70 caracteres) de la licencia del paquete. Por ejemplo: Licencia: GPLv3
 URL: https://...: URL que proporciona más información sobre el paquete, normalmente un sitio web.
-Source0: %{name}-%{version}.tar.gz: Archivo donde se encuentran las fuentes del proyecto se construye con la información {Nombre} y 
-                                                              {Version} proporcionados anteriormente. este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
+Source0: %{name}-%{version}.tar.gz: Archivo donde se encuentran las fuentes del proyecto se construye con la información {name} y 
+                                                              {version} proporcionados anteriormente. este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
 
                                                               $ tar -czvf ~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz holaMundoRPM-1.0.0/
 
@@ -146,7 +146,7 @@ Licencia
 Este proyecto está licenciado bajo la GPLv3 (GNU General Public License, versión 3). Esto significa que:
     1. Puedes utilizar, modificar y distribuir este software siempre que lo hagas bajo los mismos términos de la GPLv3. 
     2. Cualquier modificación que hagas al código fuente y distribuyas también debe ser publicada bajo la GPLv3. 
-    3. El código fuente completo debe estar disponible para cualquier usuario que reciba una copia del programa. 
+    3. El código fuente completo debe estar disponible para cualquier usuario que reciba una copia del programa.    
 Puedes encontrar una copia completa en el archivo GPLv3.txt de este repositorio o en https://www.gnu.org/licenses/gpl-3.0.html.
 
 Víctor Emmanuel Rivero Alonzo
