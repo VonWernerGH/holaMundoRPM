@@ -1,6 +1,6 @@
 # holaMundoRPM
 
-El proyecto **\"holaMundoRPM\"** es un proyecto ejemplo de como empaquetar
+El proyecto **holaMundoRPM** es un proyecto ejemplo de como empaquetar
 un programa como holaMundoRPM.c en RPM.
 
 ## Creación del RPM:
@@ -38,23 +38,23 @@ Para crear un RPM se requieren los siguientes pasos:
 3.  Ejecutar el comando rpmdev-newspec holaMundoRPM
 
   ```bash
-  $ rpmdev-newspec \~/rpmbuild/SPECS/holaMundoRPM
+  $ rpmdev-newspec ~/rpmbuild/SPECS/holaMundoRPM
   ```
 
   Este comando crea el archivo holaMundoRPM.spec en el directorio \~/rpmbuild/SPECS/, el cual modificaremos según nuestras necesidades.
 
-4.  Modificar el archivo \~/rpmbuild/SPECS/holaMundoRPM.spec con los datos de nuestra aplicación.
+4.  Modificar el archivo **~/rpmbuild/SPECS/holaMundoRPM.spec** con los datos de nuestra aplicación.
 5.  Ejecutar el comando:
 
   ```bash
-  $ rpmbuild -ba \~/rpmbuild/SPECS/holaMundoRPM.spec
+  $ rpmbuild -ba ~/rpmbuild/SPECS/holaMundoRPM.spec
   ```
 
   Este comando realiza todo el proceso de creación del RPM.
 
 ## Conformación del guion del archivo holaMundoRPM.spec:
 
-Este archivo hay que ubicarlo en \~/rpmbuild/SPECS.
+Este archivo hay que ubicarlo en **\~/rpmbuild/SPECS**.
 
 ### **Name: holaMundoRPM**
 El nombre contiene el nombre del paquete no
@@ -81,10 +81,10 @@ Resumen breve (\< 70 caracteres) de la licencia del paquete. Por ejemplo: Licenc
 URL que proporciona más información sobre el paquete, normalmente un sitio web.
 
 ### **Source0: %{name}-%{version}.tar.gz**
-Archivo donde se encuentran las fuentes del proyecto se construye con la información **Name** y **Version** proporcionados anteriormente. este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
+Archivo donde se encuentran las fuentes del proyecto se construye con la información **Name** y **Version** proporcionados anteriormente. Este archivo deberá ser construido con los archivos del proyecto dentro de un directorio con el nombre del proyecto un guión y la versión, en el caso de holaMundoRPM la versión es la 1.0.0 por lo que el archivo .tar.gz se puede construir como sigue:
 
   ```bash
-  $ tar -czvf \~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz holaMundoRPM-1.0.0/
+  $ tar -czvf ~/rpmbuild/SOURCES/holaMundoRPM-1.0.0.tar.gz holaMundoRPM-1.0.0/
 
   - Donde holaMundo-1.0.0/ es el directorio que contiene los archivos del proyecto.
   - El nombre del archivo .tar.gz debe incluir también el nombre y la versión, en este caso holaMundoRPM-1.0.0.tar.gz.
@@ -95,7 +95,7 @@ Archivo donde se encuentran las fuentes del proyecto se construye con la informa
 Esta línea indica las dependencias necesarias para compilar el paquete. En este caso solo necesita de **gcc**.
 
 ### **Requires: glibc** 
-Esta línea indica las dependencias necesarias para ejecutar el paquete. En el caso de holaMundoRPM solo requiere gibc.
+Esta línea indica las dependencias necesarias para ejecutar el paquete. En el caso de **holaMundoRPM** solo requiere **glibc**.
 
 ### **BuildArch: x86_64**
 No es necesaria para este proyecto, incluido por completitud. Especifica la arquitectura en la que se ejecutará el paquete binario resultante. Normalmente se trata de una arquitectura de CPU como sparc, i386. La cadena \'noarch\' está reservada para especificar que el paquete binario resultante es independiente de la plataforma. Los paquetes típicos independientes de la plataforma son los paquetes html, perl, python, java y ps.
@@ -108,7 +108,7 @@ No es necesaria para este proyecto, incluido por completitud. Especifica la arqu
 ### **%setup -q**
 Esta directiva marca el inicio de la sección \"prepare\" en el proceso de construcción del RPM. Aquí se colocan los comandos necesarios para preparar el entorno de compilación, como la extracción del código fuente.
 
-- **%setup -q**, Este comando dentro de la sección **%prep** descomprime y extrae el archivo de origen (Source0). La opción -q suprime la mayoría de los mensajes de salida para hacer el proceso menos verboso. Básicamente, este comando extrae el archivo fuente holaMundoRPM.tar.gz en un directorio de trabajo temporal para que el sistema de compilación pueda acceder a los archivos.
+- **%setup -q**, Este comando dentro de la sección **%prep** descomprime y extrae el archivo de origen **(Source0)**. La opción -q suprime la mayoría de los mensajes de salida para hacer el proceso menos verboso. Básicamente, este comando extrae el archivo fuente holaMundoRPM.tar.gz en un directorio de trabajo temporal para que el sistema de compilación pueda acceder a los archivos.
 
 ### **%build**
 ### gcc -O2 -g -fno-omit-frame-pointer -mtune=generic -fstack-protector-strong -D_FORTIFY_SOURCE=2 -pie -fPIE -Wall -Werror -Wl,--as-needed -o %{name} %{name}.c
@@ -117,7 +117,7 @@ Esta sección indica el inicio del proceso de construcción del paquete. Todo lo
 ### **%install**
 ### **mkdir -p \$RPM_BUILD_ROOT%{\_bindir}**
 ### **install -m 755 %{name} %{buildroot}%{\_bindir}**
-En la sección **%install**, el diseño de instalación del software  se prepara creando la estructura de directorio necesaria en un directorio \"raíz de compilación\" inicialmente vacío y copiando el software recién creado allí en los lugares apropiados. Básicamente se crea una estructura de como quedará instalada la aplicación siendo \$RPM_BUILD_ROOT (\~/rpmbuild/BUILDROOT) la raíz del sistema. El comando **install** es similar a cp, pero con funcionalidades adicionales. En este caso, lo que hace es copiar un archivo con permisos específicos. Si no lo conoces, te recomiendo te familiarices con el: man install.
+En la sección **%install**, el diseño de instalación del software  se prepara creando la estructura de directorio necesaria en un directorio \"raíz de compilación\" inicialmente vacío y copiando el software recién creado allí en los lugares apropiados. Básicamente se crea una estructura de como quedará instalada la aplicación siendo **\$RPM_BUILD_ROOT (\~/rpmbuild/BUILDROOT)** la raíz del sistema. El comando **install** es similar a cp, pero con funcionalidades adicionales. En este caso, lo que hace es copiar un archivo con permisos específicos. Si no lo conoces, te recomiendo te familiarices con el: man install.
 
 ### **%files** 
 ### **%{\_bindir}/%{name}**
@@ -216,7 +216,7 @@ Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pu
 
 Para consultas o soporte, puedes contactar al autor del proyecto a través de nospamvr-git@yahoo.com .
 
-<div style="text-align: right;">
+<div style="text-align: right;"><p>
 Víctor Emmanuel Rivero Alonzo
-2024/10/09
+2024/10/09</p>
 </div>
