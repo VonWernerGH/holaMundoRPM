@@ -133,13 +133,13 @@ La sección **%changelog** es el registro de cambios, lleva un formato fijo. Est
 
 Ejecutar la siguiente orden:
 ```bash
-  $ rpmbuild -ba \~/rpmbuild/SPECS/holaMundoRPM.spec
+  $ rpmbuild -ba ~/rpmbuild/SPECS/holaMundoRPM.spec
 ```
 
 Al finalizar, si no hubo errores, encontraremos los siguientes RPMS:
 ```bash
-  \~/rpmbuild/SRPMS/holaMundoRPM-1.0.0-1.mga9.src.rpm
-  \~/rpmbuild/RPMS/x86_64/holaMundoRPM-1.0.0-1.mga9.x86_64.rpm
+  ~/rpmbuild/SRPMS/holaMundoRPM-1.0.0-1.mga9.src.rpm
+  ~/rpmbuild/RPMS/x86_64/holaMundoRPM-1.0.0-1.mga9.x86_64.rpm
 ```
 
 ## holaMundoRPM.spec:
@@ -190,9 +190,9 @@ Las banderas activas son las siguientes:
 
 El archivo spec **holaMundoRPMNoDebug.spec**, este guión de construcción de RPM incluye la directiva:
 
-%global debug_package %{nil}
+**%global debug_package %{nil}**
 
-La cual le dice al sistema de construcción RPM que no cree el subpaquete debuginfo, por lo que el ejecutable no deberá incluir información de depuración, es útil cuando el release esta optimizado al máximo para eficiencia en velocidad y tamaño, lo cual no incluye información de depuración, el archivo holaMundoRPMNoDebug.spec esta optimizado al máximo.
+La cual le dice al sistema de construcción RPM que no cree el subpaquete debuginfo, por lo que el ejecutable no deberá incluir información de depuración, es útil cuando el release esta optimizado al máximo para eficiencia en velocidad y tamaño, lo cual no incluye información de depuración, el archivo **holaMundoRPMNoDebug.spec** esta optimizado al máximo.
 
 ## Requisitos:
 
@@ -206,7 +206,7 @@ Este proyecto está licenciado bajo la **GPLv3** (GNU General Public License, ve
 2. Cualquier modificación que hagas al código fuente y distribuyas también debe ser publicada bajo la **GPLv3**.
 3. El código fuente completo debe estar disponible para cualquier usuario que reciba una copia del programa.
 
-Puedes encontrar una copia completa en el archivo `LICENSE` de este repositorio o en [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
+Puedes encontrar una copia completa en el archivo `GPLv3.txt` de este repositorio o en [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
 
 ## Contribuciones
 
@@ -216,6 +216,7 @@ Si deseas contribuir a este proyecto, por favor, abre un "issue" o envía un "pu
 
 Para consultas o soporte, puedes contactar al autor del proyecto a través de nospamvr-git@yahoo.com .
 
-<div style="text-align: right;">Víctor Emmanuel Rivero Alonzo</div>
-
+<div style="text-align: right;">
+Víctor Emmanuel Rivero Alonzo
 2024/10/09
+</div>
